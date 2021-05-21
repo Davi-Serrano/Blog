@@ -1,0 +1,23 @@
+
+<div class="animate__animated animate__backInRight bg-light p-5 rounded-lg m-3 ">
+  <h1 class="display-4">Bem-vindo ao Blog</h1>
+  <p class="lead">Esse blog foi feito como exercício para apliicação de conhecimento.</p>
+  <hr class="my-4">
+  <p>Aqui você poderá ver varias seções sobre linguagem de programação e coisas relacionadas.</p>
+  <a class="btn btn-primary btn-lg" href="/usuarios/registro" role="button">Crie uma conta</a>
+</div>
+
+<h2>Postagens recentes:</h2>
+{{#each postagens}}
+<div class="card mt-4">
+    <div class="card-body">
+        <h3>{{titulo}}</h3>
+        <p>{{desc}}</p>
+        <small>Categoria:{{categoria.nome}}</small>
+        <br>
+        <a href="/postagens/{{slug}}"> <button class="btn btn-success mt-3">Leia mais</button></a>
+    </div>
+</div>
+    {{else}}
+    <h5>Nenhuma Postagens</h5>
+{{/each}}
