@@ -7,12 +7,14 @@ const bcrypt = require("bcryptjs")
 const passport = require("passport")
 const eAdmin = require("../helpers/eAdmin")
 
+//Pag de resigtro
 router.get("/registro", (req,res) =>{  
     res.render("usuarios/registro")
 
 })
-
+//Faz de resigtro
 router.post("/registro", (req, res) =>{
+    //Condições de registro
     var erros = []
 
     if(!req.body.nome || typeof req.body.nome == undefined || req.body.nome == null){
@@ -80,11 +82,11 @@ router.post("/registro", (req, res) =>{
 
 })
 
-
+//Pag o login
 router.get("/login", (req, res) =>{
     res.render("usuarios/login")
 })
-
+//Pag que faz o login
 router.post("/login", (req, res, next) => {
     passport.authenticate("local", {
         successRedirect: "/",
@@ -93,7 +95,7 @@ router.post("/login", (req, res, next) => {
     })(req, res, next)
 
 })
-
+//Pag que faz o logout
 router.get("/logout", (req, res) =>{
     req.logout()
     req.flash("success_msg", "Deslogado com successo")

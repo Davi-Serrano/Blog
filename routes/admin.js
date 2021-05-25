@@ -7,14 +7,15 @@ require("../models/Postagem")
 const Postagem = mongoose.model("postagens")
 const {eAdmin}= require("../helpers/eAdmin")
 
+//Pag admin
 router.get("/",  eAdmin, (req, res)=>{
     res.render("admin/index")
 })
-
+//Pag admin post
 router.get("/posts", eAdmin, (req, res) =>{
     res.send("Página de posts")
 })
-
+//Pag admin categorias
 router.get("/categorias", eAdmin, (req, res) => {
     Categoria.find().lean().then((categorias) => {
         res.render("admin/categorias", {categorias: categorias})
@@ -24,11 +25,14 @@ router.get("/categorias", eAdmin, (req, res) => {
         })
     })
 
+//Pag que add nova categoria
 router.get("/categorias/add", eAdmin, (req, res) =>{
     res.render("admin/addcategorias")
 })
-
+ 
+//Add nova categoria
 router.post("/categorias/nova", eAdmin, (req, res) =>{
+    //Verifica condição de postagem
     var erros = []
 
     if(!req.body.nome){
@@ -55,7 +59,7 @@ router.post("/categorias/nova", eAdmin, (req, res) =>{
     })
 }
 })
-
+//Pagina que edita categoria
 router.get("/categorias/edit/:id", (req, res) =>{
     Categoria.findOne({_id:req.params.id}).lean().then((categoria) => {
         res.render("admin/editcategorias", {categoria: categoria})
@@ -65,7 +69,7 @@ router.get("/categorias/edit/:id", (req, res) =>{
         })
         
 })
-
+//Edita categoria
 router.post("/categorias/edit", eAdmin, (req, res) =>{
 
     Categoria.findOne({_id: req.body.id}).then((categoria) => {
@@ -88,7 +92,7 @@ router.post("/categorias/edit", eAdmin, (req, res) =>{
         })
 
 })
-
+//deleta categoria
 router.post("/categorias/deletar", (req, res) =>{
     Categoria.deleteOne({_id: req.body.id}).then(() => {
         req.flash("success_msg", "Categoria deletada com sucesso")
@@ -98,7 +102,7 @@ router.post("/categorias/deletar", (req, res) =>{
         res.redirect("/admin/categorias")
     })
 })
-
+//Pag de postagem
 router.get("/postagens", eAdmin, (req, res) =>{
     Postagem.find().lean().populate("categoria").sort({data: "desc"}).then((postagens) =>{
         res.render("admin/postagens", {postagens: postagens})
@@ -108,7 +112,7 @@ router.get("/postagens", eAdmin, (req, res) =>{
     })
   
 })
-
+//Paf que add postagem
 router.get("/postagens/add", eAdmin, (req, res) =>{
     Categoria.find().lean().then((categorias) =>{
         res.render("admin/addpostagens", {categorias: categorias})
@@ -117,9 +121,9 @@ router.get("/postagens/add", eAdmin, (req, res) =>{
         res.redirect("/admin")
     })
 })
-
+//Add postagem
 router.post("/postagens/nova", eAdmin, (req, res) =>{
-
+    //verfica condições
     var erros = []
 
     if(!req.body.categoria == "0"){
@@ -146,7 +150,7 @@ router.post("/postagens/nova", eAdmin, (req, res) =>{
         })
     }
 })
-
+//Pag que edita as postgens
 router.get("/postagens/edit/:id", eAdmin, (req, res) =>{
 
     Postagem.findOne({_id: req.params.id}).lean().then((postagem) =>{
@@ -165,7 +169,7 @@ router.get("/postagens/edit/:id", eAdmin, (req, res) =>{
 
 })   
 
-
+//Edita as postgens
 router.post("/postagens/edit", eAdmin, (req, res) =>{
 
     Postagem.findOne({_id: req.body.id}).then((postagem) =>{
@@ -190,7 +194,7 @@ router.post("/postagens/edit", eAdmin, (req, res) =>{
     })
 
 })
-
+//Deleta as postagens
 router.post("/postagens/deletar/", eAdmin, (req, res) =>{ 
     Postagem.deleteOne({_id: req.body.id}).then(() => {
     req.flash("success_msg", "Postagem deletada com sucesso")

@@ -67,7 +67,7 @@
             res.redirect("/404")
         })
     })
-
+    //Pag que exibe as postagens
     app.get("/postagens/:slug", (req, res) =>{
         Postagem.findOne({slug: req.params.slug}).lean().then((postagem) =>{
             if(postagem){
@@ -81,7 +81,7 @@
             res.redirect("/")
         })
     })
-
+    //Pag que exibe as categorias
     app.get("/categorias", (req, res) =>{
         Categoria.find().lean().then( (categorias) =>{
                 res.render("categorias/index", {categorias: categorias})
@@ -90,7 +90,7 @@
                 res.render("/")
             })
     })
-
+//Pag que exibe uma categoria especifica
     app.get("/categorias/:slug", (req, res) =>{
         Categoria.findOne({slug: req.params.slug}).lean().then((categoria) =>{
             if(categoria){
@@ -116,7 +116,12 @@
     app.get("/404", (req, res) =>{
         res.send("Erro 404")
     })
+    app.get("/sobre", (req, res) =>{
+        res.render("categorias/sobre")
+    })
+    //Routes Admin
     app.use("/admin", admin)
+    //Routes usuario
     app.use("/usuarios", usuarios)
 
 //Outros
