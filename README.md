@@ -1,9 +1,8 @@
 <h1> Blog </h1>
 
 <h4>Descrição</h4>
-Blog feito para aprendizado, porém totalmente funcional, usando Crud em Node.Js com o MongoDb, criando rotas, rotas privadas, Login e Logout, usando Bootstrap 5 no front-end e também o handlebars
 
-</br>
+<p>Blog feito para aprendizado, porém totalmente funcional, usando Crud em Node.Js com o MongoDb, criando rotas, rotas privadas, Login e Logout, usando Bootstrap 5 no front-end e também o handlebars</p>
 
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/82523921/128638844-90ee4bcc-1c22-45a8-b0b1-9f27dff31cb6.gif)
 
