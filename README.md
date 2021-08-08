@@ -1,5 +1,8 @@
 <h1> Blog </h1>
 
+<h4>Descrição</h4>
+Blog feito para aprendizado, porém totalmente funcional, usando Crud em Node.Js com o MongoDb, criando rotas, rotas privadas, Login e Logout, usando Bootstrap 5 no front-end e também o handlebars
+
 
 
 <h3>
